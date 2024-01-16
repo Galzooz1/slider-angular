@@ -1,0 +1,30 @@
+<section
+  (mouseenter)="stop()"
+  (mouseleave)="play()"
+  class="slider"
+>
+  <div
+    class="slider-container"
+    [ngStyle]="{ width: slideWidthPx + 'px', height: slideHeightPx + 'px' }"
+  >
+    <div
+      class="slides"
+      [ngStyle]="{
+        transform: 'translate(-' + currentSlide * slideWidthPx + 'px)'
+      }"
+    >
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+  <div class="slider-controls">
+    <button (click)="prevSlide()" class="slider-controls_left">❰</button>
+    <button (click)="nextSlide()" class="slider-controls_right">❱</button>
+  </div>
+
+  <ul class="slider-indicators">
+    <li (click)="jumpToSlide(i)" [ngClass]="{'active': currentSlide === i}" *ngFor="let slide of slides; let i = index" class="slider-indicator">
+      <button ></button>
+    </li>
+  </ul>
+</section>
